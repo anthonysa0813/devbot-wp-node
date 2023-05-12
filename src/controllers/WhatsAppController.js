@@ -45,10 +45,10 @@ function GetTextUser(messages) {
     let interactiveObject = messages["interactive"];
     let typeInteractive = interactiveObject["type"];
 
-    if (typeInteractive == "button_replay") {
-      text = interactiveObject["button_replay"]["title"];
-    } else if (typeInteractive == "list_replay") {
-      text = interactiveObject["list_replay"]["title"];
+    if (typeInteractive == "button_reply") {
+      text = interactiveObject["button_reply"]["title"];
+    } else if (typeInteractive == "list_reply") {
+      text = interactiveObject["list_reply"]["title"];
     } else {
       myConsole.log("sin mensaje");
     }
