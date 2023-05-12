@@ -18,11 +18,14 @@ class Server {
     this.app.use(morgan("dev"));
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(express.static("../logs.txt"));
+    this.app.use(express.static("../../logs.txt"));
   }
 
   routes() {
     this.app.use(this.apiPaths.whatSappApi, WpRouter);
+    this.app.get("../../logs.txt", (req, res) => {
+      res.sendFile(__dirname + "/logs.txt");
+    });
   }
 
   listen() {
