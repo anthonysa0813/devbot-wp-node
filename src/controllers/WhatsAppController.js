@@ -23,6 +23,7 @@ const receivedMessage = (req, res) => {
     let messageObject = value["messages"];
     let messages = messageObject["messages"];
     let text = GetTextUser(messages);
+    myConsole.log(text);
 
     return res.send("EVENT_RECEIVED");
   } catch (error) {
@@ -40,7 +41,6 @@ function GetTextUser(messages) {
   } else if (typeMessage == "interactive") {
     let interactiveObject = messages["interactive"];
     let typeInteractive = interactiveObject["type"];
-    myConsole.log(interactiveObject);
 
     if (typeInteractive == "button_replay") {
       text = interactiveObject["button_replay"]["title"];
