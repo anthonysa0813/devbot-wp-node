@@ -1,5 +1,6 @@
 const express = require("express");
 const WpRouter = require("../routes/index");
+const staticLogRouter = require("../routes/static");
 const morgan = require("morgan");
 const cors = require("cors");
 
@@ -9,6 +10,7 @@ class Server {
     this.PORT = process.env.PORT || 5050;
     this.apiPaths = {
       whatSappApi: "/api/v1/whatsapp",
+      static: "/api/v1/logs",
     };
     this.middlewares();
     this.routes();
@@ -18,14 +20,12 @@ class Server {
     this.app.use(morgan("dev"));
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(express.static("../../logs.txt"));
+    // this.app.use(express.static("../../logs.txt"));
   }
 
   routes() {
     this.app.use(this.apiPaths.whatSappApi, WpRouter);
-    this.app.get("/logs.txt", (req, res) => {
-      res.sendFile(__dirname + "../../logs.txt");
-    });
+    this.app.use(this.apiPaths.static, staticLogRouter);
   }
 
   listen() {

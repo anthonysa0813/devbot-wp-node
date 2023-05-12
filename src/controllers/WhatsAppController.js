@@ -1,5 +1,5 @@
 const fs = require("fs");
-const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
+const myConsole = new console.Console(fs.createWriteStream("./src/logs.txt"));
 
 const verifyToken = (req, res) => {
   try {
