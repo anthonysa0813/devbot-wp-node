@@ -21,9 +21,8 @@ const receivedMessage = (req, res) => {
     let changes = entry["changes"][0];
     let value = changes["value"];
     let messageObject = value["messages"];
-    console.log("entre");
-    myConsole.log(messageObject);
-    console.log("entre");
+    let messages = messageObject["messages"];
+    let text = GetTextUser(messages);
 
     return res.send("EVENT_RECEIVED");
   } catch (error) {
@@ -32,6 +31,29 @@ const receivedMessage = (req, res) => {
     return res.send("EVENT_RECEIVED");
   }
 };
+
+function GetTextUser(messages) {
+  let text = "";
+  var typeMessage = messages["type"];
+  if (typeMessage == "text") {
+    text = messages["text"]["body"];
+  } else if (typeMessage == "interactive") {
+    let interactiveObject = messages["interactive"];
+    let typeInteractive = interactiveObject["type"];
+    myConsole.log(interactiveObject);
+
+    if (typeInteractive == "button_replay") {
+      text = interactiveObject["button_replay"]["title"];
+    } else if (typeInteractive == "list_replay") {
+      text = interactiveObject["list_replay"]["title"];
+    } else {
+      myConsole.log("sin mensaje");
+    }
+  } else {
+    myConsole.log("sin mensaje");
+  }
+  return text;
+}
 
 module.exports = {
   verifyToken,
