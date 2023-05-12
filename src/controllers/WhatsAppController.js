@@ -2,6 +2,7 @@ const fs = require("fs");
 const { SendMessageWhatsApp } = require("../services/whatsappService");
 const myConsole = new console.Console(fs.createWriteStream("./src/logs.txt"));
 const samples = require("../shared/SampleModels");
+const processMessage = require("../shared/processMessage");
 
 const verifyToken = (req, res) => {
   try {
@@ -30,30 +31,34 @@ const receivedMessage = (req, res) => {
       const number = messages["from"];
       myConsole.log(text);
 
-      if (text == "text") {
-        let data = samples.SampleText("Hola usuario", number);
-        SendMessageWhatsApp(data);
-      } else if (text == "image") {
-        let data = samples.SampleImage(number);
-        SendMessageWhatsApp(data);
-      } else if (text == "video") {
-        let data = samples.SampleVideo(number);
-        SendMessageWhatsApp(data);
-      } else if (text == "document") {
-        let data = samples.SampleDocument(number);
-        SendMessageWhatsApp(data);
-      } else if (text == "button") {
-        let data = samples.SampleButtons(number);
-        SendMessageWhatsApp(data);
-      } else if (text == "list") {
-        let data = samples.SampleList(number);
-        SendMessageWhatsApp(data);
-      } else if (text == "location") {
-        let data = samples.SampleLocation(number);
-        SendMessageWhatsApp(data);
-      } else {
-        let data = samples.SampleText("No entiendo", number);
-        SendMessageWhatsApp(data);
+      // if (text == "text") {
+      //   let data = samples.SampleText("Hola usuario", number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "image") {
+      //   let data = samples.SampleImage(number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "video") {
+      //   let data = samples.SampleVideo(number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "document") {
+      //   let data = samples.SampleDocument(number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "button") {
+      //   let data = samples.SampleButtons(number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "list") {
+      //   let data = samples.SampleList(number);
+      //   SendMessageWhatsApp(data);
+      // } else if (text == "location") {
+      //   let data = samples.SampleLocation(number);
+      //   SendMessageWhatsApp(data);
+      // } else {
+      //   let data = samples.SampleText("No entiendo", number);
+      //   SendMessageWhatsApp(data);
+      // }
+
+      if (text != "") {
+        processMessage.Process(text, number);
       }
     }
 
