@@ -23,8 +23,8 @@ class Server {
 
   routes() {
     this.app.use(this.apiPaths.whatSappApi, WpRouter);
-    this.app.get("../../logs.txt", (req, res) => {
-      res.sendFile(__dirname + "/logs.txt");
+    this.app.get("/logs.txt", (req, res) => {
+      res.sendFile(__dirname + "../../logs.txt");
     });
   }
 
