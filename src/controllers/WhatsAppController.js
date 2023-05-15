@@ -11,7 +11,7 @@ const verifyToken = (req, res) => {
     let challenge = req.query["hub.challenge"];
 
     if (challenge != null && token != null && token == accessToken) {
-      myConsole.log(req);
+      console.log({ query });
       res.send(challenge);
     }
   } catch (error) {
