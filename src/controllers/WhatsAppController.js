@@ -11,6 +11,7 @@ const verifyToken = (req, res) => {
     let challenge = req.query["hub.challenge"];
 
     if (challenge != null && token != null && token == accessToken) {
+      myConsole.log(req);
       res.send(challenge);
     }
   } catch (error) {
@@ -30,32 +31,6 @@ const receivedMessage = (req, res) => {
       let text = GetTextUser(messages);
       const number = messages["from"];
       myConsole.log(text);
-
-      // if (text == "text") {
-      //   let data = samples.SampleText("Hola usuario", number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "image") {
-      //   let data = samples.SampleImage(number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "video") {
-      //   let data = samples.SampleVideo(number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "document") {
-      //   let data = samples.SampleDocument(number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "button") {
-      //   let data = samples.SampleButtons(number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "list") {
-      //   let data = samples.SampleList(number);
-      //   SendMessageWhatsApp(data);
-      // } else if (text == "location") {
-      //   let data = samples.SampleLocation(number);
-      //   SendMessageWhatsApp(data);
-      // } else {
-      //   let data = samples.SampleText("No entiendo", number);
-      //   SendMessageWhatsApp(data);
-      // }
 
       if (text != "") {
         processMessage.Process(text, number);
