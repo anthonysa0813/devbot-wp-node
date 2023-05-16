@@ -3,6 +3,7 @@ const WpRouter = require("../routes/index");
 const staticLogRouter = require("../routes/static");
 const morgan = require("morgan");
 const cors = require("cors");
+const connectDatabase = require("../database/config");
 
 class Server {
   constructor() {
@@ -14,6 +15,11 @@ class Server {
     };
     this.middlewares();
     this.routes();
+    this.connectDB();
+  }
+
+  async connectDB() {
+    await connectDatabase();
   }
 
   middlewares() {

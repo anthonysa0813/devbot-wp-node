@@ -60,6 +60,11 @@ function Process(textUser, number) {
       "📞*Centro de contacto:*\n912345678",
       number
     );
+    let modelText = whatsappModel.MessageText(
+      `El usuario con el número: ${number} desea una atención personalizada`,
+      "928133695"
+    );
+    models.push(modelText);
     models.push(model);
   } else {
     //No entiende
