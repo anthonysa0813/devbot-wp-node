@@ -19,7 +19,7 @@ function MessageList(number) {
     interactive: {
       type: "list",
       body: {
-        text: "✅ Tengo estas opciones",
+        text: "✅Elige una opción",
       },
       footer: {
         text: "Selecciona una de las opciones para poder atenderte",
@@ -28,17 +28,18 @@ function MessageList(number) {
         button: "Ver opciones",
         sections: [
           {
-            title: "Compra y vende productos",
+            title: "Saber de Contact BPO",
             rows: [
               {
-                id: "main-comprar",
-                title: "Comprar",
-                description: "Compra los mejores productos para tu hogar",
+                id: "main-saber",
+                title: "Saber de Contact BPO",
+                description: "Breve descripción acerca de quiénes somos",
               },
               {
-                id: "main-vender",
-                title: "Vender",
-                description: "Vende tus productos",
+                id: "main-industria",
+                title: "Industrias",
+                description:
+                  "Ver la lista de industria donde contamos con experiencia.",
               },
             ],
           },
@@ -53,7 +54,7 @@ function MessageList(number) {
               {
                 id: "main-contacto",
                 title: "Centro de contacto",
-                description: "Te atenderá uno de nuestro agentes.",
+                description: "En breve te atenderá uno de nuestro agentes.",
               },
             ],
           },

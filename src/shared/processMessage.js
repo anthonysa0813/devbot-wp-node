@@ -5,10 +5,13 @@ function Process(textUser, number) {
   textUser = textUser.toLowerCase();
   var models = [];
 
-  if (textUser.includes("hola")) {
+  if (
+    textUser.includes("hola") ||
+    textUser.includes("hi" || textUser.includes("hol"))
+  ) {
     //SAUDAR
     var model = whatsappModel.MessageText(
-      "Hola, un gusto saludarte. 👋",
+      "Hola, somos Contact BPO. 👋",
       number
     );
     models.push(model);
@@ -24,17 +27,18 @@ function Process(textUser, number) {
   } else if (
     textUser.includes("adios") ||
     textUser.includes("adiós") ||
+    textUser.includes("chau") ||
     textUser.includes("bye") ||
     textUser.includes("me voy")
   ) {
     // despedir
-    var model = whatsappModel.MessageText("Ve con cuidado. 😊", number);
+    var model = whatsappModel.MessageText("Nos vemos. 😊", number);
     models.push(model);
-  } else if (textUser.includes("comprar")) {
+  } else if (textUser.includes("saber de contact bpo")) {
     // comprar
     var model = whatsappModel.MessageComprar(number);
     models.push(model);
-  } else if (textUser.includes("vender")) {
+  } else if (textUser.includes("industrias")) {
     // vender
     var model = whatsappModel.MessageText(
       "👉 Regístrate en el siguiente formulario para poder evaluarte: https://form.jotform.com/222507994363665",
@@ -50,7 +54,7 @@ function Process(textUser, number) {
     models.push(model);
     var modelLocation = whatsappModel.MessageLocation(number);
     models.push(modelLocation);
-  } else if (textUser.includes("contacto")) {
+  } else if (textUser.includes("centro de contacto")) {
     // vender
     var model = whatsappModel.MessageText(
       "📞*Centro de contacto:*\n912345678",
